@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mervin Caballero | Full Stack Developer</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F4C81', // Professional blue
+                        secondary: '#2D3748', // Dark slate
+                        accent: '#3CAEDD', // Bright blue accent
+                        accent2: '#81B29A', // Sage green accent
+                        darkbg: '#1A202C', // Dark background
+                        light: '#F7FAFC' // Light background
+                    },
+                    fontFamily: {
+                        sans: ['Work Sans', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'fade-in-delay-1': 'fadeIn 0.8s ease-out 0.3s forwards',
+                        'fade-in-delay-2': 'fadeIn 0.8s ease-out 0.6s forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'float': 'float 5s ease-in-out infinite',
+                        'spin-slow': 'spin 15s linear infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        }
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Work Sans and Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="animations.css">
+    <style>
+        /* Base styles */
+        body {
+            overflow-x: hidden;
+        }
+        
+        .backdrop-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        [data-animate] {
+            opacity: 0;
+        }
+        
+        [data-animate].animate {
+            opacity: 1;
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #0F4C81, #3CAEDD);
+        }
+        
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230F4C81' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #0F4C81;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0D3E6A;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed top-0 left-0 w-full h-full bg-white dark:bg-darkbg z-[9999] flex items-center justify-center transition-opacity duration-500">
+        <div class="relative">
+            <div class="loader"></div>
+            <div class="mt-4 text-primary font-bold">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Navbar - New fixed side navigation for desktop -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur shadow-sm transition-all duration-300 lg:px-8 px-4 py-4" id="navbar">
+        <div class="w-full h-0.5 bg-gray-200 absolute bottom-0 left-0">
+            <div id="scroll-progress" class="h-full bg-primary transition-all duration-300"></div>
+        </div>
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" class="font-bold text-2xl tracking-tight">
+                <span class="text-primary font-display">MC</span>
+                <span class="text-secondary font-display hidden sm:inline-block ml-2">Mervin Caballero</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-item text-secondary hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full">Home</a>
+                <a href="#projects" class="nav-item text-secondary hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full">Work</a>
+                <a href="#about" class="nav-item text-secondary hover:text-primary transition-colors font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full">About</a>
+                <a href="#contact" class="nav-item ml-4 px-5 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">Contact</a>
+            </div>
+            <div class="md:hidden cursor-pointer" id="burger">
+                <div class="w-6 h-0.5 bg-secondary my-1.5 transition-all"></div>
+                <div class="w-6 h-0.5 bg-secondary my-1.5 transition-all"></div>
+                <div class="w-6 h-0.5 bg-secondary my-1.5 transition-all"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed top-[72px] right-0 h-0 w-full md:hidden bg-white/95 backdrop-blur overflow-hidden transition-all duration-500 z-40" id="mobile-menu">
+        <div class="flex flex-col items-center gap-6 py-10">
+            <a href="#home" class="nav-item text-secondary font-medium text-lg" onclick="closeMobileMenu()">Home</a>
+            <a href="#projects" class="nav-item text-secondary font-medium text-lg" onclick="closeMobileMenu()">Work</a>
+            <a href="#about" class="nav-item text-secondary font-medium text-lg" onclick="closeMobileMenu()">About</a>
+            <a href="#contact" class="nav-item text-secondary font-medium text-lg" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section - Reimagined with split design -->
+    <section id="home" class="hero min-h-screen flex items-center bg-pattern">
+        <div class="container max-w-7xl mx-auto px-6 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <p class="text-accent font-medium mb-4 opacity-0 animate-fade-in tracking-wide uppercase text-sm">Full Stack Developer</p>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 opacity-0 animate-fade-in font-display leading-tight">
+                        Crafting <span class="text-gradient">Digital Experiences</span> That Matter
+                    </h1>
+                    <p class="text-gray-600 text-lg mb-10 max-w-lg opacity-0 animate-fade-in-delay-1 leading-relaxed">
+                        I'm Mervin, a passionate website developer with 1 year of experience creating responsive and user-centered web applications.
+                    </p>
+                    <div class="flex flex-wrap gap-4 opacity-0 animate-fade-in-delay-2">
+                        <a href="#projects" class="px-8 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-all">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="px-8 py-3 border-2 border-primary text-primary rounded-md hover:bg-primary/10 transition-all">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 relative">
+                    <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
+                             alt="Mervin Caballero coding" 
+                             class="w-full h-auto rounded-lg transform transition-transform hover:scale-105 duration-700">
+                    </div>
+                    <div class="absolute -z-10 top-8 -right-8 w-full h-full border-4 border-accent rounded-lg"></div>
+                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+            
+            <!-- Tech stack pills -->
+            <div class="mt-24 max-w-4xl mx-auto">
+                <p class="text-center text-gray-500 mb-6 text-sm uppercase tracking-wider font-medium">Technologies I work with</p>
+                <div class="flex flex-wrap justify-center gap-4" data-animate data-animation="fade-up">
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">Node.js</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">Laravel</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">Symfony</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">Javascript</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">MySQL</span>
+                    <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm">Tailwind CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Modern masonry grid -->
+    <section id="projects" class="py-24 bg-white">
+        <div class="container max-w-7xl mx-auto px-6">
+            <div class="mb-16 max-w-3xl">
+                <span class="text-accent font-medium text-sm uppercase tracking-wider">My Portfolio</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4 font-display">
+                    Featured Projects
+                </h2>
+                <p class="text-gray-600 text-lg">A carefully curated selection of my work showcasing my skills and problem-solving approach</p>
+            </div>
+            
+            <!-- Featured Project - Large display -->
+            <div class="grid lg:grid-cols-5 gap-8 mb-20" data-animate data-animation="fade-up">
+                <div class="lg:col-span-3 overflow-hidden rounded-lg shadow-lg h-full">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="HealthTrack App" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="lg:col-span-2 flex flex-col justify-center">
+                    <span class="text-accent font-medium text-sm mb-2 uppercase tracking-wider">Featured Project</span>
+                    <h3 class="text-2xl font-bold mb-4">HealthTrack App</h3>
+                    <p class="text-gray-600 mb-6">A comprehensive health tracking platform that helps users monitor their fitness progress, nutrition, and wellness goals with personalized insights.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">React Native</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">Node.js</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">MongoDB</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Projects - Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100" data-animate data-animation="fade-up">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="MarketPulse Dashboard" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-3">MarketPulse Dashboard</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">An e-commerce analytics platform that delivers real-time sales data, customer insights, and inventory management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">Vue.js</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">Express</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100" data-animate data-animation="fade-up">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596003906949-67221c37965c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="TravelBuddy" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-3">TravelBuddy</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">A smart travel companion app that helps users plan trips, discover local attractions, and access essential information offline.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">PWA</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">Firebase</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100" data-animate data-animation="fade-up">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Financial Dashboard" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-3">WealthTracker</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">A financial management application with budgeting tools, expense tracking, and investment portfolio visualization.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">React</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">D3.js</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="https://github.com/alexchen" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-all">
+                    <i class="fab fa-github"></i> View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Timeline approach -->
+    <section id="about" class="py-24 bg-gray-50">
+        <div class="container max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-5 gap-12 items-start">
+                <div class="lg:col-span-2">
+                    <span class="text-accent font-medium text-sm uppercase tracking-wider">About Me</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6 font-display">
+                        My Professional Journey
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-6">
+                        With 1 year of experience in website development, I combine fresh technical skills with an eagerness to learn and adapt. I focus on creating efficient solutions that align with business needs and deliver real value.
+                    </p>
+                    <div class="flex flex-col gap-4 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Batangas State University</h3>
+                                <p class="text-gray-600">Information Technology, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">1 Year Experience</h3>
+                                <p class="text-gray-600">Full-stack development</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">4 Projects</h3>
+                                <p class="text-gray-600">Delivered successfully</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 text-primary hover:text-primary/80">
+                        <span>Download Resume</span>
+                        <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="lg:col-span-3">
+                    <div class="bg-white shadow-lg rounded-lg p-8">
+                        <h3 class="text-xl font-bold mb-6 pb-4 border-b border-gray-100">Skills & Expertise</h3>
+                        
+                        <!-- Skills grid -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Development -->
+                            <div>
+                                <h4 class="font-bold text-lg mb-4 text-primary">Development</h4>
+                                
+                                <!-- Skill bars -->
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">JavaScript/TypeScript</span>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">React/React Native</span>
+                                            <span>90%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Node.js/Express</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Database Design</span>
+                                            <span>80%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Infrastructure -->
+                            <div>
+                                <h4 class="font-bold text-lg mb-4 text-primary">Infrastructure</h4>
+                                
+                                <!-- Skill bars -->
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Cloud Architecture</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">CI/CD Pipelines</span>
+                                            <span>80%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Docker/Kubernetes</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Security Best Practices</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 h-2 rounded-full">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional skills tags -->
+                        <div class="mt-8 pt-8 border-t border-gray-100">
+                            <h4 class="font-bold text-lg mb-4">Additional Technologies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Laravel</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Tailwind CSS</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">MYSQL</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Firebase</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Livewire</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React Native</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Node.js</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">GitHub Actions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials - Clean card design -->
+    <!--
+    <section class="py-24 bg-white">
+        <div class="container max-w-7xl mx-auto px-6">
+            <span class="text-accent font-medium text-sm uppercase tracking-wider">Testimonials</span>
+            <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4 font-display">
+                Client Feedback
+            </h2>
+            <p class="text-gray-600 text-lg mb-16 max-w-2xl">What clients and colleagues say about working with me</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100" data-animate data-animation="fade-up">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                            <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Sarah Connor" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="text-yellow-400 mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 italic">"Alex delivered our e-commerce platform ahead of schedule and exceeded our performance expectations. His attention to detail and ability to translate business requirements into technical solutions was exceptional."</p>
+                            <div>
+                                <h4 class="font-bold">Sarah Connor</h4>
+                                <p class="text-gray-600 text-sm">CTO at TechFuture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100" data-animate data-animation="fade-up">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Rodriguez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="text-yellow-400 mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 italic">"Working with Alex on our healthcare app was a fantastic experience. His technical expertise combined with his understanding of UX principles resulted in a product our users love. I would hire him again in a heartbeat."</p>
+                            <div>
+                                <h4 class="font-bold">James Rodriguez</h4>
+                                <p class="text-gray-600 text-sm">Product Manager at HealthInnovate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!-- Contact Section - Modern split design -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="container max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <span class="text-accent font-medium text-sm uppercase tracking-wider">Contact</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4 font-display">
+                        Let's Work Together
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8">Have a project in mind or want to discuss potential opportunities? I'd love to hear from you.</p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Email</h3>
+                                <p class="text-gray-600">jmeva.quimio12345@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Location</h3>
+                                <p class="text-gray-600">Tanauan, Batangas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Availability</h3>
+                                <p class="text-gray-600">Currently accepting new projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <a href="https://github.com/Ifou" target="_blank" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-700 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mervin-caballero-105230314/" target="_blank" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-700 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/alexchen" target="_blank" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-700 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg" data-animate data-animation="fade-up">
+                    <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="Your email">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-primary/90 transition-all font-medium">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Cleaner design -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="font-bold text-2xl mb-2 font-display">Mervin Caballero</div>
+                    <p class="text-gray-400">Full-Stack Developer</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex gap-4 mb-4">
+                        <a href="https://github.com/Ifou" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mervin-caballero-105230314/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://twitter.com/alexchen" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2025 Mervin Caballero. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/80 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

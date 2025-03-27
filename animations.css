@@ -1,0 +1,258 @@
+/* Enhanced animation library for the portfolio site - Professional version */
+
+/* Preloader animation */
+.loader {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  border: 6px solid #0F4C81;
+  border-color: #0F4C81 transparent #0F4C81 transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+@keyframes loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Refined entrance animations with more subtle movement */
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px); 
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    transform: translateY(-20px); 
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from { 
+    transform: translateX(30px); 
+    opacity: 0;
+  }
+  to { 
+    transform: translateX(0); 
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from { 
+    transform: translateX(-30px); 
+    opacity: 0;
+  }
+  to { 
+    transform: translateX(0); 
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from { 
+    transform: scale(0.95); 
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Floating animation - more subtle for professional look */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Professional hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle image scale */
+.image-scale {
+  overflow: hidden;
+}
+
+.image-scale img {
+  transition: transform 0.6s ease;
+}
+
+.image-scale:hover img {
+  transform: scale(1.05);
+}
+
+/* Underline animation for links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Professional background patterns for sections */
+.bg-pattern-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, .9) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .9) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, .5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .5) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* Skill bar animation */
+.skill-bar {
+  width: 0;
+  transition: width 1.5s ease-in-out;
+}
+
+.skill-bar.animate {
+  width: 100%;
+}
+
+/* Gradient text animation */
+.gradient-text {
+  background-size: 200% auto;
+  animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Smooth form interactions */
+input:focus, textarea:focus {
+  transition: all 0.3s ease;
+  transform: translateY(-2px);
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Page transitions */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0F4C81;
+  z-index: 9999;
+  transform: translateX(-100%);
+}
+
+.page-transition.show {
+  animation: pageTransitionIn 0.5s forwards;
+}
+
+.page-transition.hide {
+  animation: pageTransitionOut 0.5s forwards;
+}
+
+@keyframes pageTransitionIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pageTransitionOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* Progress bar animation */
+@keyframes progressAnimation {
+  0% { width: 5%; }
+  100% { width: 100%; }
+}
+
+/* Clean fading animations for content blocks */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate].animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate][data-animation="fade-up"] {
+  transform: translateY(20px);
+}
+
+[data-animate][data-animation="fade-down"] {
+  transform: translateY(-20px);
+}
+
+[data-animate][data-animation="fade-left"] {
+  transform: translateX(20px);
+}
+
+[data-animate][data-animation="fade-right"] {
+  transform: translateX(-20px);
+}
+
+[data-animate][data-animation="zoom-in"] {
+  transform: scale(0.95);
+}
+
+/* Animation delays for staggered effects */
+[data-delay="100"] { transition-delay: 0.1s; }
+[data-delay="200"] { transition-delay: 0.2s; }
+[data-delay="300"] { transition-delay: 0.3s; }
+[data-delay="400"] { transition-delay: 0.4s; }
+[data-delay="500"] { transition-delay: 0.5s; }
