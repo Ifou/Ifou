@@ -11,7 +11,7 @@
 
 - 📫 How to reach me **jmeva.quimio12345@gmail.com**
 
-- <p align="left"> <img src="https://img.shields.io/twitter/follow/ifou?logo=twitter&style=plastic" alt="ifou" />My coding <a href="https://ifou.github.io/Ifou/" target="blank"> Journey </a> </p>
+- <p align="left"> 📂 My coding <a href="https://ifou.github.io/Ifou/" target="blank"> Journey </a> </p>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
