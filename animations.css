@@ -1,6 +1,21 @@
-/* Enhanced animation library for the portfolio site - Professional version */
+/* Optimized Animation Library - Portfolio Site */
 
-/* Preloader animation */
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #0f4c81;
+  --accent-color: #3caedd;
+  --accent2-color: #81b29a;
+  --text-color: #2d3748;
+  --bg-light: #f7fafc;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.6s ease;
+}
+
+/* Preloader */
 .loader {
   display: inline-block;
   width: 40px;
@@ -9,220 +24,217 @@
 }
 
 .loader:after {
-  content: " ";
+  content: "";
   display: block;
   border-radius: 50%;
   width: 100%;
   height: 100%;
-  border: 6px solid #0F4C81;
-  border-color: #0F4C81 transparent #0F4C81 transparent;
+  border: 4px solid var(--primary-color);
+  border-color: var(--primary-color) transparent var(--primary-color)
+    transparent;
   animation: loader 1.2s linear infinite;
 }
 
 @keyframes loader {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Refined entrance animations with more subtle movement */
-@keyframes slideUp {
-  from { 
-    transform: translateY(20px); 
+/* Core Animation Keyframes */
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
-  to { 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes slideDown {
-  from { 
-    transform: translateY(-20px); 
+  from {
+    transform: translateY(-30px);
     opacity: 0;
   }
-  to { 
-    transform: translateY(0); 
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes slideLeft {
-  from { 
-    transform: translateX(30px); 
+  from {
+    transform: translateX(30px);
     opacity: 0;
   }
-  to { 
-    transform: translateX(0); 
+  to {
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes slideRight {
-  from { 
-    transform: translateX(-30px); 
+  from {
+    transform: translateX(-30px);
     opacity: 0;
   }
-  to { 
-    transform: translateX(0); 
+  to {
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes zoomIn {
-  from { 
-    transform: scale(0.95); 
+  from {
+    transform: scale(0.9);
     opacity: 0;
   }
-  to { 
-    transform: scale(1); 
+  to {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Floating animation - more subtle for professional look */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
-/* Professional hover effects */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn var(--transition-slow) ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: slideUp var(--transition-slow) ease-out forwards;
+}
+
+.animate-fade-down {
+  animation: slideDown var(--transition-slow) ease-out forwards;
+}
+
+.animate-fade-left {
+  animation: slideLeft var(--transition-slow) ease-out forwards;
+}
+
+.animate-fade-right {
+  animation: slideRight var(--transition-slow) ease-out forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn var(--transition-slow) ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Interactive Effects */
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Subtle image scale */
 .image-scale {
   overflow: hidden;
 }
 
 .image-scale img {
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
 
 .image-scale:hover img {
   transform: scale(1.05);
 }
 
-/* Underline animation for links */
+/* Link Animations */
 .link-underline {
   position: relative;
   display: inline-block;
 }
 
 .link-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
   background-color: currentColor;
-  transition: width 0.3s ease;
+  transition: width var(--transition-normal);
 }
 
 .link-underline:hover::after {
   width: 100%;
 }
 
-/* Professional background patterns for sections */
-.bg-pattern-grid {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, .9) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .9) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, .5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .5) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
-}
-
-/* Skill bar animation */
-.skill-bar {
-  width: 0;
-  transition: width 1.5s ease-in-out;
-}
-
-.skill-bar.animate {
-  width: 100%;
-}
-
-/* Gradient text animation */
-.gradient-text {
-  background-size: 200% auto;
-  animation: gradientShift 5s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Smooth form interactions */
-input:focus, textarea:focus {
-  transition: all 0.3s ease;
-  transform: translateY(-2px);
+/* Form Effects */
+input:focus,
+textarea:focus {
+  transition: all var(--transition-normal);
+  transform: translateY(-1px);
 }
 
 button {
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 button:active {
   transform: translateY(1px);
 }
 
-/* Page transitions */
-.page-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #0F4C81;
-  z-index: 9999;
-  transform: translateX(-100%);
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.page-transition.show {
-  animation: pageTransitionIn 0.5s forwards;
+/* Gradient Text */
+.gradient-text {
+  background-size: 200% auto;
+  animation: gradientShift 4s ease infinite;
 }
 
-.page-transition.hide {
-  animation: pageTransitionOut 0.5s forwards;
-}
-
-@keyframes pageTransitionIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes pageTransitionOut {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
-}
-
-/* Progress bar animation */
-@keyframes progressAnimation {
-  0% { width: 5%; }
-  100% { width: 100%; }
-}
-
-/* Clean fading animations for content blocks */
+/* Animation Control Classes */
 [data-animate] {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
 [data-animate].animate {
@@ -230,29 +242,186 @@ button:active {
   transform: translateY(0);
 }
 
-[data-animate][data-animation="fade-up"] {
+/* Animation Delays */
+[data-delay="100"] {
+  animation-delay: 0.1s;
+}
+[data-delay="200"] {
+  animation-delay: 0.2s;
+}
+[data-delay="300"] {
+  animation-delay: 0.3s;
+}
+[data-delay="400"] {
+  animation-delay: 0.4s;
+}
+[data-delay="500"] {
+  animation-delay: 0.5s;
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Background Patterns */
+.bg-pattern-grid {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.8) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+}
+
+/* Progress Bar Animation */
+.progress-bar {
+  width: 0;
+  transition: width 1.5s ease-in-out;
+}
+
+.progress-bar.animate {
+  width: 100%;
+}
+
+/* Skill Bar Animation */
+.skill-bar {
+  width: 0;
+  transition: width 1.5s ease-in-out;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-bar.animate {
+  width: var(--skill-percentage, 100%);
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Card Animations */
+.card-hover {
+  transition: all var(--transition-normal);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Text Reveal Animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal .char {
+  display: inline-block;
+  opacity: 0;
   transform: translateY(20px);
+  transition: all 0.3s ease;
 }
 
-[data-animate][data-animation="fade-down"] {
-  transform: translateY(-20px);
+.text-reveal.animate .char {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-[data-animate][data-animation="fade-left"] {
-  transform: translateX(20px);
+/* Stagger Animation Delays */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+.stagger-5 {
+  animation-delay: 0.5s;
 }
 
-[data-animate][data-animation="fade-right"] {
-  transform: translateX(-20px);
+/* Utility Classes */
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+.transition-normal {
+  transition: all var(--transition-normal);
+}
+.transition-slow {
+  transition: all var(--transition-slow);
 }
 
-[data-animate][data-animation="zoom-in"] {
-  transform: scale(0.95);
+/* Focus Styles for Accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
-/* Animation delays for staggered effects */
-[data-delay="100"] { transition-delay: 0.1s; }
-[data-delay="200"] { transition-delay: 0.2s; }
-[data-delay="300"] { transition-delay: 0.3s; }
-[data-delay="400"] { transition-delay: 0.4s; }
-[data-delay="500"] { transition-delay: 0.5s; }
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  }
+}
