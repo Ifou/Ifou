@@ -372,3 +372,264 @@ const Utils = {
         }
     }
 };
+
+// Project Modal Functionality
+const projectData = {
+    artifacts: {
+        title: "ARtifacts Explorer",
+        description: "A comprehensive AR museum project featuring both a dedicated museum website and an innovative AR mobile application. The platform brings historical artifacts to life through immersive augmented reality experiences, offering visitors interactive storytelling and seamless exploration of cultural heritage both online and through the AR app.",
+        longDescription: "ARtifacts Explorer represents the cutting edge of museum technology, combining traditional web presence with groundbreaking augmented reality experiences. The project consists of two main components: a fully-featured museum website and a revolutionary AR mobile application. The website serves as the digital gateway to the museum, featuring detailed artifact catalogs, virtual tours, educational resources, and visitor information. The AR mobile app transforms the physical museum experience by overlaying digital information onto real artifacts, creating an interactive layer that tells stories, provides historical context, and engages visitors in ways never before possible.",
+        technologies: ["Unity AR", "ARCore/ARKit", "Hostinger", "3D Modeling", "C#"],
+        features: [
+            "Real-time AR artifact recognition and overlay",
+            "Interactive 3D models with detailed information",
+            "Audio narration and visual storytelling",
+            "Web promotion and mobile ar integration",
+            "Content management system for museum staff",
+            "Analytics dashboard for visitor engagement tracking"
+        ],
+        images: [
+            {
+                src: "Assets/Images/Unity/nakatayo head.jpg",
+                alt: "AR Museum Interface",
+                caption: "Main AR interface showing artifact recognition"
+            },
+            {
+                src: "Assets/Images/Unity/sample1.jpg",
+                alt: "3D Artifact Model",
+                caption: "Interactive 3D artifact models"
+            },
+            {
+                src: "Assets/Images/Unity/sample2.jpg",
+                alt: "Museum Website",
+                caption: "Responsive museum website design"
+            },
+            {
+                src: "Assets/Images/Unity/sample3.jpg",
+                alt: "AR Experience",
+                caption: "Immersive AR storytelling experience"
+            }
+        ],
+        link: "https://artifactsmalvar.com",
+        status: "Completed"
+    },
+    artexpo: {
+        title: "ArtExpo E-commerce Platform",
+        description: "A sophisticated art e-commerce platform built with WordPress WooCommerce, featuring artist portfolios, secure payment processing, and inventory management for art galleries and collectors.",
+        longDescription: "ArtExpo is a comprehensive e-commerce solution designed specifically for the art industry. Built on WordPress with WooCommerce integration, the platform provides galleries, artists, and collectors with a powerful tool for buying and selling artwork online. The system includes advanced features such as artist portfolio management, detailed artwork catalogs with high-resolution images, secure payment processing, and sophisticated inventory tracking. The platform also includes customer relationship management tools, sales analytics, and automated email marketing capabilities.",
+        technologies: ["WordPress", "WooCommerce", "PHP", "MySQL", "PayPal API", "Stripe"],
+        features: [
+            "Artist portfolio management system",
+            "High-resolution image galleries with zoom functionality",
+            "Secure payment processing with multiple gateways",
+            "Advanced search and filtering by style, medium, price",
+            "Automated invoice generation and order tracking",
+            "Customer wishlist and favorites functionality",
+            "Admin dashboard with sales analytics",
+            "Mobile-responsive design for all devices"
+        ],
+        images: [
+            {
+                src: "Assets/Images/ArtExpo/Sunset.png",
+                alt: "ArtExpo Homepage",
+                caption: "Modern and elegant homepage design"
+            },
+            {
+                src: "Assets/Images/ArtExpo/artExpo1.png",
+                alt: "Product Gallery",
+                caption: "Interactive artwork gallery with filtering"
+            },
+            {
+                src: "Assets/Images/ArtExpo/artExpo2.png",
+                alt: "Artist Profile",
+                caption: "Detailed artist portfolio pages"
+            },
+            {
+                src: "Assets/Images/ArtExpo/artExpo3.png",
+                alt: "Shopping Cart",
+                caption: "Streamlined checkout process"
+            }
+        ],
+        status: "Completed"
+    },
+    'arktech-web': {
+        title: "Arktech Corporate Website",
+        description: "A complete website renewal from WordPress to full-stack PHP solution with integrated backend CMS for managing potential employees, featuring application tracking and HR management capabilities.",
+        longDescription: "The Arktech website project involved a complete technological transformation from a traditional WordPress site to a custom full-stack PHP solution. This rebuild was driven by the need for advanced HR management capabilities and better performance. The new system includes a sophisticated content management system specifically designed for HR operations, including application tracking, employee onboarding workflows, and comprehensive candidate management. The frontend provides an engaging corporate presence while the backend empowers HR teams with powerful tools for managing their recruitment pipeline.",
+        technologies: ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "Bootstrap", "AJAX"],
+        features: [
+            "Custom-built HR management system",
+            "Application tracking and candidate pipeline",
+            "Automated email notifications for applicants",
+            "Document upload and management system",
+            "Employee onboarding workflow automation",
+            "Role-based access control for different departments",
+            "Analytics dashboard for recruitment metrics",
+            "Mobile-responsive design for all devices"
+        ],
+        images: [
+            {
+                src: "Assets/Images/Arktech/arktech.png",
+                alt: "Arktech Homepage",
+                caption: "Modern corporate website design"
+            },
+            {
+                src: "Assets/Images/Arktech/company.png",
+                alt: "Company Profile",
+                caption: "Company information and values section"
+            },
+            {
+                src: "Assets/Images/Arktech/home.png",
+                alt: "Services Overview",
+                caption: "Services and capabilities showcase"
+            }
+        ],
+        status: "Completed"
+    },
+    'sakto-space': {
+        title: "SaktoSpace AR",
+        description: "An innovative augmented reality mobile application built with Flutter, featuring AR visualization and interactive spatial experiences using ar_flutter_plugin_2 for seamless AR integration.",
+        longDescription: "SaktoSpace AR represents the next generation of spatial computing applications, built entirely with Flutter for cross-platform compatibility. The application leverages advanced AR technologies to create immersive spatial experiences that blend digital content with the physical world. Using the ar_flutter_plugin_2, the app provides users with tools for spatial visualization, virtual object placement, and interactive 3D experiences. The project showcases the potential of Flutter as a platform for AR development and demonstrates advanced implementation of augmented reality features in mobile applications.",
+        technologies: ["Flutter", "Dart", "AR Flutter Plugin", "ARCore", "ARKit", "Firebase"],
+        features: [
+            "Cross-platform AR experiences (iOS and Android)",
+            "Real-time spatial tracking and mapping",
+            "Virtual object placement with persistence",
+            "Interactive 3D content and animations",
+            "Cloud-based content synchronization",
+            "Multi-user AR collaboration features",
+            "Advanced lighting and shadow rendering",
+            "Performance optimization for mobile devices"
+        ],
+        images: [
+            {
+                src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "AR Interface",
+                caption: "Main AR interface with spatial tracking"
+            }
+        ],
+        status: "In Progress"
+    }
+};
+
+// Modal functions
+window.openProjectModal = function(projectId) {
+    const project = projectData[projectId];
+    if (!project) return;
+
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+
+    modalTitle.textContent = project.title;        modalContent.innerHTML = `
+            <div class="space-y-6">
+                <div class="project-gallery">
+                    ${project.images.map((image, index) => `
+                        <div class="gallery-image modal-image-container">
+                            <img src="${image.src}" alt="${image.alt}" class="modal-image" loading="lazy" onclick="openImageModal('${image.src}', '${image.alt}', '${image.caption}')">
+                            <div class="image-zoom-overlay">
+                                <i class="fas fa-expand"></i> Click to enlarge
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        <div class="space-y-6">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <h3 class="text-xl font-bold">Project Overview</h3>
+                    <span class="px-3 py-1 text-xs font-medium rounded-full ${
+                        project.status === 'Live' ? 'bg-green-100 text-green-800' :
+                        project.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
+                        'bg-yellow-100 text-yellow-800'
+                    }">${project.status}</span>
+                </div>
+                <p class="text-gray-600 leading-relaxed">${project.longDescription}</p>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-bold mb-3">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    ${project.technologies.map(tech => `
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">${tech}</span>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-bold mb-3">Key Features</h4>
+                <ul class="space-y-2">
+                    ${project.features.map(feature => `
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-primary mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">${feature}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+            
+            ${project.link ? `
+                <div class="pt-4 border-t border-gray-200">
+                    <a href="${project.link}" target="_blank" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 transition-colors">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Live Project
+                    </a>
+                </div>
+            ` : ''}
+        </div>
+    `;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};    window.closeProjectModal = function() {
+        const modal = document.getElementById('projectModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    };
+
+    // Image Modal Functions
+    window.openImageModal = function(src, alt, caption) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalImageCaption');
+
+        modalImage.src = src;
+        modalImage.alt = alt;
+        modalCaption.textContent = caption || alt;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeImageModal = function() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    };    // Close modal when clicking outside
+    document.getElementById('projectModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeProjectModal();
+        }
+    });
+
+    // Close image modal when clicking outside
+    document.getElementById('imageModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeImageModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (!document.getElementById('imageModal').classList.contains('hidden')) {
+                closeImageModal();
+            } else if (!document.getElementById('projectModal').classList.contains('hidden')) {
+                closeProjectModal();
+            }
+        }
+    });

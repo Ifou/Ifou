@@ -95,6 +95,104 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #0D3E6A;
         }
+
+        /* Project Modal Styles */
+        #projectModal {
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .modal-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .modal-image {
+            transition: transform 0.3s ease, filter 0.3s ease;
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .image-zoom-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .modal-image-container:hover .image-zoom-overlay {
+            opacity: 1;
+        }
+
+        /* Image Modal Styles */
+        #imageModal {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .image-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .image-modal-caption {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Project detail gallery styles */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .gallery-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
@@ -224,9 +322,9 @@
                         <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">3D Modeling</span>
                     </div>
                     <div class="flex gap-4">
-                        <!-- <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors">
-                            <i class="fab fa-github"></i> View Code
-                        </a> -->
+                        <button onclick="openProjectModal('artifacts')" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium">
+                            View Details
+                        </button>
                         <a href="https://artifactsmalvar.com" target="_blank" class="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors">
                             <i class="fas fa-external-link-alt"></i> Visit Museum Website
                         </a>
@@ -251,14 +349,11 @@
                             <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">WordPress</span>
                             <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">WooCommerce</span>
                         </div>
-                        <!-- <div class="flex justify-between items-center">
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <button onclick="openProjectModal('artexpo')" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium">
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
@@ -277,14 +372,11 @@
                             <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">PHP</span>
                             <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">CMS</span>
                         </div>
-                        <!-- <div class="flex justify-between items-center">
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <button onclick="openProjectModal('arktech-web')" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium">
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
@@ -303,23 +395,14 @@
                             <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">AR Plugin</span>
                             <span class="px-3 py-1 bg-accent2/20 text-accent2 text-xs font-medium rounded-full">In Progress</span>
                         </div>
-                        <!-- <div class="flex justify-between items-center">
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <button onclick="openProjectModal('sakto-space')" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium">
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- <div class="mt-16 text-center">
-                <a href="https://github.com/alexchen" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-all">
-                    <i class="fab fa-github"></i> View All Projects
-                </a>
-            </div> -->
         </div>
     </section>
 
@@ -599,7 +682,33 @@
     <!-- Scroll to top button -->
     <button id="scroll-to-top" class="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/80 focus:outline-none">
         <i class="fas fa-arrow-up"></i>
-    </button>
+    </button>        <!-- Project Details Modal -->
+        <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 z-[9999] hidden items-center justify-center p-4">
+            <div class="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-gray-800"></h2>
+                    <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div id="modalContent" class="grid lg:grid-cols-2 gap-8">
+                        <!-- Content will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Modal -->
+        <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 z-[10000] hidden items-center justify-center p-4">
+            <div class="relative max-w-full max-h-full flex flex-col items-center">
+                <button onclick="closeImageModal()" class="absolute top-4 right-4 z-10 text-white hover:text-gray-300 text-3xl bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img id="modalImage" class="image-modal-content rounded-lg shadow-2xl" src="" alt="">
+                <div id="modalImageCaption" class="image-modal-caption"></div>
+            </div>
+        </div>
 
     <script src="script.js"></script>
 </body>
