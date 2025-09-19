@@ -5,8 +5,6 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ifou" alt="ifou" /></a> </p>
 
-<p align="left"> <a href="https://twitter.com/ifou" target="blank"><img src="https://img.shields.io/twitter/follow/ifou?logo=twitter&style=for-the-badge" alt="ifou" /></a> </p>
-
 - 🌱 I’m currently learning **Laravel, Symfony, Html, PHP, GIT**
 
 - 📫 How to reach me **jmeva.quimio12345@gmail.com**
