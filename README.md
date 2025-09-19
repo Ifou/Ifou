@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Mervin Caballero</h1>
-<h3 align="center">I work always, maybe sometimes.</h3>
+<h3 align="center">Results-driven IT graduate with proven expertise in full-stack web development and AR applications. Successfully delivered 3+ commercial projects using Unity, PHP, and modern web technologies. Specialized in creating user-centered digital solutions that enhance engagement and solve real-world challenges.</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=ifou&label=Profile%20views&color=0e75b6&style=flat" alt="ifou" /> </p>
 
@@ -7,18 +7,16 @@
 
 <p align="left"> <a href="https://twitter.com/ifou" target="blank"><img src="https://img.shields.io/twitter/follow/ifou?logo=twitter&style=for-the-badge" alt="ifou" /></a> </p>
 
-- 🌱 I’m currently learning **Laravel, Symfony, Html, PHP, GIT**
+- 🌱 I’m currently learning **Laravel 12, PHP, GIT**
 
-- 📫 How to reach me **jmeva.quimio12345@gmail.com**
+- 📫 How to reach me **jmq.caballero@gmail.com**
 
 - <p align="left"> 📂 My coding <a href="https://ifou.github.io/Ifou/" target="blank"> Journey </a> </p>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="https://x.com/Machi_Po1" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="ifou" height="30" width="40" /></a>
-<a href="https://www.linkedin.com/in/mervin-caballero-105230314/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="mervin caballero" height="30" width="40" /></a>
-<a href="https://fb.com/nivrem caballero" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="nivrem caballero" height="30" width="40" /></a>
-<a href="https://www.youtube.com/c/aifouuu" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="aifouuu" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/in/john-mervin-caballero-105230314" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="mervin caballero" height="30" width="40" /></a>
+<a href="https://www.facebook.com/MervinQCaballero" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="nivrem caballero" height="30" width="40" /></a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
