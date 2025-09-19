@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Mervin Caballero</h1>
-<h3 align="center">I work always, maybe sometimes.</h3>
+<h3 align="center">Results-driven IT graduate with proven expertise in full-stack web development and AR applications. Successfully delivered 3+ commercial projects using Unity, PHP, and modern web technologies. Specialized in creating user-centered digital solutions that enhance engagement and solve real-world challenges.</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=ifou&label=Profile%20views&color=0e75b6&style=flat" alt="ifou" /> </p>
 
