@@ -5,9 +5,9 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ifou" alt="ifou" /></a> </p>
 
-- 🌱 I’m currently learning **Laravel, Symfony, Html, PHP, GIT**
+- 🌱 I’m currently learning **Laravel 12, PHP, GIT**
 
-- 📫 How to reach me **jmeva.quimio12345@gmail.com**
+- 📫 How to reach me **jmeva.quimio@gmail.com**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
