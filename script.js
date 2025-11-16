@@ -1,69 +1,55 @@
-// Optimized Portfolio Script - Professional & Performance-focused
+// Minimalistic Portfolio Script
 document.addEventListener('DOMContentLoaded', () => {
-    // Cache DOM elements for better performance
+    // Cache DOM elements
     const navbar = document.querySelector('#navbar');
     const navLinks = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('section');
     const burger = document.querySelector('#burger');
     const mobileMenu = document.querySelector('#mobile-menu');
     const scrollToTopBtn = document.querySelector('#scroll-to-top');
-    const progressBar = document.querySelector('#scroll-progress');
     const preloader = document.querySelector('#preloader');
     const contactForm = document.querySelector('#contact form');
 
-    // Optimized mobile menu toggle
+    // Mobile menu toggle
     burger?.addEventListener('click', toggleMobileMenu);
-    
+
     function toggleMobileMenu() {
-        const isOpen = mobileMenu.classList.contains('h-[300px]');
+        const isOpen = mobileMenu.classList.contains('h-[200px]');
         const lines = burger.querySelectorAll('div');
-        
+
         if (isOpen) {
             closeMobileMenu();
         } else {
             mobileMenu.classList.remove('h-0');
-            mobileMenu.classList.add('h-[300px]');
-            
-            // Animate burger to X
-            lines[0]?.classList.add('rotate-45', 'translate-y-[10px]');
+            mobileMenu.classList.add('h-[200px]');
+
+            lines[0]?.classList.add('rotate-45', 'translate-y-[5px]');
             lines[1]?.classList.add('opacity-0');
-            lines[2]?.classList.add('-rotate-45', '-translate-y-[10px]');
+            lines[2]?.classList.add('-rotate-45', '-translate-y-[5px]');
         }
     }
 
     window.closeMobileMenu = () => {
         mobileMenu?.classList.add('h-0');
-        mobileMenu?.classList.remove('h-[300px]');
-        
+        mobileMenu?.classList.remove('h-[200px]');
+
         const lines = burger?.querySelectorAll('div');
-        lines?.[0]?.classList.remove('rotate-45', 'translate-y-[10px]');
+        lines?.[0]?.classList.remove('rotate-45', 'translate-y-[5px]');
         lines?.[1]?.classList.remove('opacity-0');
-        lines?.[2]?.classList.remove('-rotate-45', '-translate-y-[10px]');
+        lines?.[2]?.classList.remove('-rotate-45', '-translate-y-[5px]');
     };
 
-    // Optimized scroll handler with throttling
+    // Scroll handler
     let isScrolling = false;
-    
+
     function handleScroll() {
         if (!isScrolling) {
             requestAnimationFrame(() => {
-                updateNavbar();
                 updateActiveSection();
-                updateScrollProgress();
                 updateScrollToTop();
                 isScrolling = false;
             });
             isScrolling = true;
-        }
-    }
-
-    function updateNavbar() {
-        if (window.scrollY > 100) {
-            navbar?.classList.add('py-2', 'shadow-md');
-            navbar?.classList.remove('py-4', 'shadow-sm');
-        } else {
-            navbar?.classList.add('py-4', 'shadow-sm');
-            navbar?.classList.remove('py-2', 'shadow-md');
         }
     }
 
@@ -77,19 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('text-primary', 'after:w-full');
+            link.classList.remove('text-primary');
             if (link.getAttribute('href')?.slice(1) === current) {
-                link.classList.add('text-primary', 'after:w-full');
+                link.classList.add('text-primary');
             }
         });
-    }
-
-    function updateScrollProgress() {
-        if (progressBar) {
-            const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollProgress = (window.scrollY / scrollTotal) * 100;
-            progressBar.style.width = `${Math.min(scrollProgress, 100)}%`;
-        }
     }
 
     function updateScrollToTop() {
@@ -106,78 +84,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Scroll to top functionality
+    // Scroll to top
     scrollToTopBtn?.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Optimized Intersection Observer for animations
+    // Simple Intersection Observer
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px'
     };
 
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const el = entry.target;
-                const animation = el.dataset.animation || 'fade-in';
-                const delay = el.dataset.delay || '0';
-                
-                // Apply animation with CSS classes
-                el.style.animationDelay = `${delay}s`;
-                el.classList.add('animate', `animate-${animation}`);
-                
-                // Stop observing to prevent re-triggering
-                animationObserver.unobserve(el);
+                entry.target.classList.add('animate');
+                animationObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe all elements with data-animate attribute
     document.querySelectorAll('[data-animate]').forEach(el => {
         animationObserver.observe(el);
     });
 
-    // Optimized form handling
+    // Form handling
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
     }
 
     function handleFormSubmit(e) {
         e.preventDefault();
-        
+
         const formData = {
             name: document.getElementById('name'),
             email: document.getElementById('email'),
             message: document.getElementById('message')
         };
-        
+
         const button = contactForm.querySelector('button');
         const originalText = button.innerHTML;
-        
-        // Validate form
+
         if (validateForm(formData)) {
-            // Show loading state
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.innerHTML = 'Sending...';
             button.disabled = true;
-            
-            // Simulate form submission
+
             setTimeout(() => {
                 showFormSuccess(button, originalText);
                 contactForm.reset();
                 clearFormErrors();
             }, 1500);
-        } else {
-            // Focus on first error field
-            const firstError = contactForm.querySelector('.border-red-500');
-            firstError?.focus();
         }
     }
 
     function validateForm(formData) {
         let isValid = true;
-        
+
         // Name validation
         if (!formData.name.value.trim()) {
             showFieldError(formData.name, 'Please enter your name');
@@ -185,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             clearFieldError(formData.name);
         }
-        
+
         // Email validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!formData.email.value.trim()) {
@@ -197,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             clearFieldError(formData.email);
         }
-        
+
         // Message validation
         if (!formData.message.value.trim()) {
             showFieldError(formData.message, 'Please enter your message');
@@ -208,17 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             clearFieldError(formData.message);
         }
-        
+
         return isValid;
     }
 
     function showFieldError(field, message) {
         field.classList.add('border-red-500');
-        
+
         // Remove existing error
         const existingError = field.parentElement.querySelector('.error-message');
         existingError?.remove();
-        
+
         // Add new error
         const errorElement = document.createElement('p');
         errorElement.className = 'error-message text-red-500 text-sm mt-1';
@@ -239,139 +201,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showFormSuccess(button, originalText) {
-        button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        button.classList.add('bg-green-500');
-        
+        button.innerHTML = 'Message Sent!';
+        button.classList.add('bg-green-600');
+
         setTimeout(() => {
             button.innerHTML = originalText;
-            button.classList.remove('bg-green-500');
+            button.classList.remove('bg-green-600');
             button.disabled = false;
         }, 3000);
     }
 
-    // Preloader handling
+    // Preloader
     window.addEventListener('load', () => {
         if (preloader) {
             setTimeout(() => {
                 preloader.classList.add('opacity-0');
                 setTimeout(() => {
                     preloader.style.display = 'none';
-                }, 500);
-            }, 500);
+                }, 400);
+            }, 300);
         }
     });
 
-    // Enhanced project card interactions
-    document.querySelectorAll('.project-card, [data-animate]').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            const img = card.querySelector('img');
-            if (img) {
-                img.style.transform = 'scale(1.05)';
-                img.style.filter = 'brightness(1.05)';
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            const img = card.querySelector('img');
-            if (img) {
-                img.style.transform = '';
-                img.style.filter = '';
-            }
-        });
-    });
-
-    // Simple typing effect for hero text
-    const heroGradientText = document.querySelector('.hero .text-gradient');
-    if (heroGradientText) {
-        const originalText = heroGradientText.textContent;
-        heroGradientText.textContent = '';
-        
-        let i = 0;
-        function typeText() {
-            if (i < originalText.length) {
-                heroGradientText.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeText, 80);
-            }
-        }
-        
-        setTimeout(typeText, 1000);
-    }
-
-    // Smooth anchor link scrolling
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for navbar height
+                const offsetTop = target.offsetTop - 70;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
-                // Close mobile menu if open
-                if (mobileMenu?.classList.contains('h-[300px]')) {
+
+                if (mobileMenu?.classList.contains('h-[200px]')) {
                     closeMobileMenu();
                 }
             }
         });
     });
 
-    // Live form validation
+    // Form validation
     ['name', 'email', 'message'].forEach(id => {
         const field = document.getElementById(id);
         if (field) {
-            field.addEventListener('input', function() {
+            field.addEventListener('input', function () {
                 if (this.classList.contains('border-red-500') && this.value.trim()) {
                     clearFieldError(this);
                 }
             });
         }
     });
-
-    // Performance monitoring (optional)
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log(`Page loaded in ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
-            }, 0);
-        });
-    }
 });
-
-// Utility functions
-const Utils = {
-    // Debounce function for performance optimization
-    debounce(func, wait, immediate) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                timeout = null;
-                if (!immediate) func(...args);
-            };
-            const callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func(...args);
-        };
-    },
-    
-    // Throttle function for scroll events
-    throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        }
-    }
-};
 
 // Project Modal Functionality
 const projectData = {
@@ -487,33 +369,139 @@ const projectData = {
         status: "Completed"
     },
     'sakto-space': {
-        title: "SaktoSpace AR",
-        description: "An innovative augmented reality mobile application built with Flutter, featuring AR visualization and interactive spatial experiences using ar_flutter_plugin_2 for seamless AR integration.",
-        longDescription: "SaktoSpace AR represents the next generation of spatial computing applications, built entirely with Flutter for cross-platform compatibility. The application leverages advanced AR technologies to create immersive spatial experiences that blend digital content with the physical world. Using the ar_flutter_plugin_2, the app provides users with tools for spatial visualization, virtual object placement, and interactive 3D experiences. The project showcases the potential of Flutter as a platform for AR development and demonstrates advanced implementation of augmented reality features in mobile applications.",
-        technologies: ["Flutter", "Dart", "AR Flutter Plugin", "ARCore", "ARKit", "Firebase"],
+        title: "SaktoSpace",
+        description: "AR e-commerce platform built with Flutter and integrated with Laravel backend and MySQL database. Assisted in the development of AR visualization features and e-commerce functionality.",
+        longDescription: "SaktoSpace is an innovative augmented reality e-commerce platform that combines mobile commerce with immersive AR experiences. Built with Flutter for the mobile frontend and Laravel for the robust backend API, the application allows users to visualize products in their physical space before purchase. The platform features a comprehensive product catalog, shopping cart, order management, and secure payment processing, all enhanced with AR capabilities that let customers see how items would look in their environment. As a development assistant on this project, I contributed to implementing AR features, API integration, and user interface components.",
+        technologies: ["Flutter", "Dart", "Laravel", "PHP", "MySQL", "AR Flutter Plugin", "REST API"],
         features: [
-            "Cross-platform AR experiences (iOS and Android)",
-            "Real-time spatial tracking and mapping",
-            "Virtual object placement with persistence",
-            "Interactive 3D content and animations",
-            "Cloud-based content synchronization",
-            "Multi-user AR collaboration features",
-            "Advanced lighting and shadow rendering",
-            "Performance optimization for mobile devices"
+            "AR product visualization in real environment",
+            "Full e-commerce functionality with cart and checkout",
+            "Laravel backend API with MySQL database",
+            "User authentication and profile management",
+            "Product catalog with categories and search",
+            "Order tracking and history",
+            "Secure payment integration",
+            "Admin panel for product management"
         ],
         images: [
             {
-                src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "AR Interface",
-                caption: "Main AR interface with spatial tracking"
+                src: "Assets/Images/SaktoSpace/SaktoShopProducts.jpg",
+                alt: "SaktoSpace Shopping Interface",
+                caption: "Product browsing and shopping interface"
+            },
+            {
+                src: "Assets/Images/SaktoSpace/SaktoProductInfo.jpg",
+                alt: "Product Details",
+                caption: "Detailed product information view"
+            },
+            {
+                src: "Assets/Images/SaktoSpace/SaktoProductManage.jpg",
+                alt: "Product Management",
+                caption: "Product management interface"
+            },
+            {
+                src: "Assets/Images/SaktoSpace/SaktoAdmin.jpg",
+                alt: "Admin Dashboard",
+                caption: "Administrative dashboard for store management"
             }
         ],
-        status: "In Progress"
+        status: "In Progress",
+        role: "Development Assistant"
+    },
+    'sentrisafe': {
+        title: "SentriSafe",
+        description: "Crime reporting mobile application developed in Flutter with map integration, crime announcements, and community commenting features. Laravel backend handles data management and user interactions.",
+        longDescription: "SentriSafe is a community-focused crime reporting application designed to enhance public safety through real-time information sharing. Developed with Flutter for a seamless cross-platform mobile experience, the app integrates mapping technology to display crime locations and incidents in an intuitive interface. Users can report crimes, view announcements from local authorities, and engage with the community through commenting features. The Laravel backend manages user data, crime reports, notifications, and community interactions, while ensuring data privacy and security. As a development assistant on this project, I helped implement the map integration, commenting system, and various frontend features.",
+        technologies: ["Flutter", "Dart", "Laravel", "PHP", "MySQL", "Google Maps API", "Firebase"],
+        features: [
+            "Interactive map showing crime locations and incidents",
+            "Crime reporting with photo and location capture",
+            "Real-time crime announcements and alerts",
+            "Community commenting and discussion features",
+            "User authentication and verification",
+            "Push notifications for nearby incidents",
+            "Crime statistics and heat maps",
+            "Admin dashboard for content moderation"
+        ],
+        images: [
+            {
+                src: "Assets/Images/SentriSafe/ssCrimeMap.jpg",
+                alt: "Crime Map Interface",
+                caption: "Interactive crime map with incident markers"
+            },
+            {
+                src: "Assets/Images/SentriSafe/ssAppCall.jpg",
+                alt: "Emergency Call Feature",
+                caption: "In-app emergency call functionality"
+            },
+            {
+                src: "Assets/Images/SentriSafe/ssProfile.jpg",
+                alt: "User Profile",
+                caption: "User profile and settings"
+            },
+            {
+                src: "Assets/Images/SentriSafe/ssUserControl.jpg",
+                alt: "User Controls",
+                caption: "User management and control panel"
+            },
+            {
+                src: "Assets/Images/SentriSafe/ssLoginWeb.jpg",
+                alt: "Web Login Interface",
+                caption: "Web-based login and authentication"
+            }
+        ],
+        status: "Completed",
+        role: "Development Assistant"
+    },
+    'sohocafe': {
+        title: "SohoCafe",
+        description: "Cafe e-commerce platform with mobile ordering system, menu management, and comprehensive admin dashboard. Laravel backend with Flutter mobile application.",
+        longDescription: "SohoCafe is a complete cafe management and ordering platform that bridges the gap between customers and cafe operations. Built with Flutter for a smooth mobile experience and Laravel for robust backend operations, the application provides customers with an intuitive menu browsing and ordering interface while giving cafe administrators powerful tools to manage products, orders, and business operations. The system includes real-time order tracking, inventory management, and sales analytics. As a development assistant on this project, I contributed to building the ordering flow, admin dashboard features, and integrating the mobile app with the backend API.",
+        technologies: ["Flutter", "Dart", "Laravel", "PHP", "MySQL", "REST API"],
+        features: [
+            "Mobile menu browsing with categories and search",
+            "Shopping cart and checkout system",
+            "Real-time order tracking and status updates",
+            "Admin dashboard for order management",
+            "Product and inventory management",
+            "Sales analytics and reporting",
+            "User authentication and profiles",
+            "Order history and reordering"
+        ],
+        images: [
+            {
+                src: "Assets/Images/SohoCafe/SohoCafeHome.jpg",
+                alt: "SohoCafe Home",
+                caption: "Cafe homepage and featured items"
+            },
+            {
+                src: "Assets/Images/SohoCafe/SohoMenu.jpg",
+                alt: "Menu Browsing",
+                caption: "Interactive menu with categories"
+            },
+            {
+                src: "Assets/Images/SohoCafe/SohoCart.jpg",
+                alt: "Shopping Cart",
+                caption: "Cart and checkout interface"
+            },
+            {
+                src: "Assets/Images/SohoCafe/SohoAdminDash.jpg",
+                alt: "Admin Dashboard",
+                caption: "Administrative dashboard overview"
+            },
+            {
+                src: "Assets/Images/SohoCafe/SohoAdminOrderList.jpg",
+                alt: "Order Management",
+                caption: "Order list and management panel"
+            }
+        ],
+        status: "Completed",
+        role: "Development Assistant"
     }
 };
 
 // Modal functions
-window.openProjectModal = function(projectId) {
+window.openProjectModal = function (projectId) {
     const project = projectData[projectId];
     if (!project) return;
 
@@ -521,7 +509,7 @@ window.openProjectModal = function(projectId) {
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
 
-    modalTitle.textContent = project.title;        modalContent.innerHTML = `
+    modalTitle.textContent = project.title; modalContent.innerHTML = `
             <div class="space-y-6">
                 <div class="project-gallery">
                     ${project.images.map((image, index) => `
@@ -536,13 +524,13 @@ window.openProjectModal = function(projectId) {
             </div>
         <div class="space-y-6">
             <div>
-                <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-3 mb-4 flex-wrap">
                     <h3 class="text-xl font-bold">Project Overview</h3>
-                    <span class="px-3 py-1 text-xs font-medium rounded-full ${
-                        project.status === 'Live' ? 'bg-green-100 text-green-800' :
-                        project.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
-                        'bg-yellow-100 text-yellow-800'
-                    }">${project.status}</span>
+                    <span class="px-3 py-1 text-xs font-medium rounded-full ${project.status === 'Live' ? 'bg-green-100 text-green-800' :
+            project.status === 'Completed' ? 'bg-blue-100 text-blue-800' :
+                'bg-yellow-100 text-yellow-800'
+        }">${project.status}</span>
+                    ${project.role ? `<span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700">${project.role}</span>` : ''}
                 </div>
                 <p class="text-gray-600 leading-relaxed">${project.longDescription}</p>
             </div>
@@ -582,54 +570,54 @@ window.openProjectModal = function(projectId) {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
-};    window.closeProjectModal = function() {
-        const modal = document.getElementById('projectModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    };
+}; window.closeProjectModal = function () {
+    const modal = document.getElementById('projectModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+};
 
-    // Image Modal Functions
-    window.openImageModal = function(src, alt, caption) {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalCaption = document.getElementById('modalImageCaption');
+// Image Modal Functions
+window.openImageModal = function (src, alt, caption) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalImageCaption');
 
-        modalImage.src = src;
-        modalImage.alt = alt;
-        modalCaption.textContent = caption || alt;
+    modalImage.src = src;
+    modalImage.alt = alt;
+    modalCaption.textContent = caption || alt;
 
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    };
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};
 
-    window.closeImageModal = function() {
-        const modal = document.getElementById('imageModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    };    // Close modal when clicking outside
-    document.getElementById('projectModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
+window.closeImageModal = function () {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+};    // Close modal when clicking outside
+document.getElementById('projectModal')?.addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeProjectModal();
+    }
+});
+
+// Close image modal when clicking outside
+document.getElementById('imageModal')?.addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeImageModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        if (!document.getElementById('imageModal').classList.contains('hidden')) {
+            closeImageModal();
+        } else if (!document.getElementById('projectModal').classList.contains('hidden')) {
             closeProjectModal();
         }
-    });
-
-    // Close image modal when clicking outside
-    document.getElementById('imageModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeImageModal();
-        }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            if (!document.getElementById('imageModal').classList.contains('hidden')) {
-                closeImageModal();
-            } else if (!document.getElementById('projectModal').classList.contains('hidden')) {
-                closeProjectModal();
-            }
-        }
-    });
+    }
+});
