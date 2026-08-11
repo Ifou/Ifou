@@ -32,9 +32,9 @@ Laravel 12 · deeper PHP patterns · stronger Git workflows
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=ifou&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats" height="165" />
+<img src="https://github-readme-stats.shion.dev/api?username=ifou&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats" height="165" />
 &nbsp;
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ifou&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages" height="165" />
+<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=ifou&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages" height="165" />
 
 <br /><br />
 
