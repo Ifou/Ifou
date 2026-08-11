@@ -1,57 +1,45 @@
 <div align="center">
 
-<!-- Animated Header -->
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=600&lines=Hi+%F0%9F%91%8B+I'm+Mervin+Caballero;Full-Stack+Developer;AR+Application+Specialist" alt="Typing SVG" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,50:1a2332,100:0D1117&height=120&section=header&text=Mervin%20Caballero&fontSize=36&fontColor=A9FEF7&fontAlignY=35&desc=Full-stack%20%C2%B7%20AR&descAlignY=55&descSize=14&animation=fadeIn" alt="Header" width="100%" />
 
-<!-- Minimalist Divider -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=22&duration=3200&pause=1200&color=A9FEF7&center=true&vCenter=true&multiline=false&width=520&height=40&lines=Full-Stack+Developer;AR+Application+Specialist;Building+things+that+ship" alt="Typing roles" />
 
-<!-- Brief Bio -->
-<p style="margin: 20px 0;">
-  <em>Results-driven IT graduate specializing in full-stack web development and AR applications</em><br>
-  <em>Successfully delivered 3+ commercial projects</em>
-</p>
+IT graduate · 3+ commercial projects shipped
 
-<!-- Currently Learning Badge -->
-<br>
+<br />
 
-```yaml
-currently_learning: ["Laravel 12", "PHP", "GIT"]
-```
+[![Portfolio](https://img.shields.io/badge/Portfolio-0D1117?style=for-the-badge&logo=github&logoColor=A9FEF7)](https://ifou.github.io/Ifou/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jmq.caballero@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/john-mervin-caballero-105230314)
 
-<br>
+</div>
 
-<!-- Contact Links with Icons -->
-<p>
-  <a href="mailto:jmq.caballero@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
-  </a>
-  <a href="https://www.linkedin.com/in/john-mervin-caballero-105230314" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
-  <a href="https://www.facebook.com/MervinQCaballero" target="_blank">
-    <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"/>
-  </a>
-  <a href="https://ifou.github.io/Ifou/" target="_blank">
-    <img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=todoist&logoColor=white" alt="Portfolio"/>
-  </a>
-</p>
+---
 
-<br>
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-<br><br>
+### About
 
-<!-- GitHub Stats - Minimalist Cards -->
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=ifou&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats"/>
-<img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=ifou&theme=tokyonight&hide_border=true&background=0D1117&ring=A9FEF7&fire=A9FEF7&currStreakLabel=A9FEF7" alt="GitHub Streak"/>
+I build practical full-stack products — from Laravel backends to interactive AR experiences. I care about clean UX, reliable delivery, and shipping work that clients can actually use.
 
-<br>
+### Stack
 
-<img width="60%" src="https://github-readme-stats.vercel.app/api/top-langs?username=ifou&show_icons=true&locale=en&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages"/>
+`Laravel` · `PHP` · `JavaScript` · `HTML/CSS` · `Git` · `AR`
 
-<br><br>
+### Currently learning
 
-<!-- Wave Animation -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=twinkling"/>
+Laravel 12 · deeper PHP patterns · stronger Git workflows
+
+---
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=ifou&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats" height="165" />
+&nbsp;
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ifou&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages" height="165" />
+
+<br /><br />
+
+Open to collabs, freelance work, and interesting problems — reach out anytime.
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,50:1a2332,100:0D1117&height=80&section=footer&animation=fadeIn" alt="Footer" width="100%" />
 
 </div>
