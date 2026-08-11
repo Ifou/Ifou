@@ -8,7 +8,7 @@ IT graduate · 3+ commercial projects shipped
 
 <br />
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-0D1117?style=for-the-badge&logo=github&logoColor=A9FEF7)](https://ifou.github.io/Ifou/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-0D1117?style=for-the-badge&logo=github&logoColor=A9FEF7)](https://github.com/JMrvnC/Portfolio)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jmq.caballero@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/john-mervin-caballero-105230314)
 
@@ -32,9 +32,9 @@ Laravel 12 · deeper PHP patterns · stronger Git workflows
 
 <div align="center">
 
-<img src="https://github-readme-stats.shion.dev/api?username=ifou&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats" height="165" />
+<img src="https://github-readme-stats.shion.dev/api?username=JMrvnC&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&icon_color=A9FEF7&text_color=C9D1D9" alt="GitHub Stats" height="165" />
 &nbsp;
-<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=ifou&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages" height="165" />
+<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=JMrvnC&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=A9FEF7&text_color=C9D1D9" alt="Top Languages" height="165" />
 
 <br /><br />
 
